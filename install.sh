@@ -71,8 +71,8 @@ function link_extension {
 }
 
 function restart_klipper {
-    echo "[POST-INSTALL] Restarting Klipper..."
-    sudo systemctl restart klipper
+    echo "[POST-INSTALL] Restarting Klipper services..."
+    sudo systemctl restart $(systemctl list-units --full -all -t service --no-legend | grep -o 'klipper.*\.service' | sed 's/\.service$//' | tr '\n' ' ')
 }
 
 
